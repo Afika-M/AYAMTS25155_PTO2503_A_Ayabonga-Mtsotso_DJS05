@@ -1,6 +1,6 @@
 import { formatDate } from "../../utils/formatDate";
 import styles from "./PodcastCard.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /**
  * Renders a single podcast preview card with image, title, number of seasons,
@@ -18,8 +18,6 @@ import { useNavigate } from "react-router-dom";
  * @returns {JSX.Element} The rendered podcast card component.
  */
 export default function PodcastCard({ podcast, genres }) {
-  const navigate = useNavigate();
-
   const genreSpans = podcast.genres.map((id) => {
     const match = genres.find((genre) => genre.id === id);
     return (
@@ -28,20 +26,21 @@ export default function PodcastCard({ podcast, genres }) {
       </span>
     );
   });
-  function handleClick() {
-    navigate(`/podcast/${podcast.id}`);
-  }
 
   return (
-    <div className={styles.card} onClick={handleClick}>
-      <img src={podcast.image} alt={podcast.title} />
+    <Link to={`/podcast/${podcast.id}`} className={styles.link}>
+      <div className={styles.card}>
+        <img src={podcast.image} alt={podcast.title} />
 
-      <h3>{podcast.title}</h3>
-      <p className={styles.seasons}>{podcast.seasons} seasons</p>
-      <div className={styles.tags}>{genreSpans}</div>
-      <p className={styles.updatedText}>
-        Updated {formatDate(podcast.updated)}
-      </p>
-    </div>
+        <h3>{podcast.title}</h3>
+        <p className={styles.seasons}>{podcast.seasons} seasons</p>
+
+        <div className={styles.tags}>{genreSpans}</div>
+
+        <p className={styles.updatedText}>
+          Updated {formatDate(podcast.updated)}
+        </p>
+      </div>
+    </Link>
   );
 }

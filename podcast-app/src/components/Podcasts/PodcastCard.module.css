@@ -44,3 +44,7 @@
   font-size: 0.8rem;
   color: var(--grey-text);
 }
+.link {
+  text-decoration: none;
+  color: inherit;
+}
