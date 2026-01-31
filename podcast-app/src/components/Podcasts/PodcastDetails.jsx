@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchPodcastById } from "../api/fetchPodcasts";
+import { fetchPodcastById } from "../../api/fetchData";
 
 export default function PodcastDetail() {
   const { id } = useParams();
