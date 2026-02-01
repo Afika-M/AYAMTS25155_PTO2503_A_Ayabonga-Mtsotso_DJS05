@@ -4,8 +4,7 @@ import { PodcastProvider } from "./context/PodcastContext";
 import { fetchPodcasts } from "./api/fetchData";
 import Header from "./components/UI/Header";
 import Home from "./pages/Home";
-import PodcastDetail from "./components/Podcasts/PodcastDetails";
-
+import ShowDetails from "./pages/ShowDetails";
 /**
  * Root component of the Podcast app.
  * Handles data fetching and layout composition.
@@ -25,7 +24,7 @@ export default function App() {
       <PodcastProvider initialPodcasts={podcasts}>
         <Routes>
           <Route path="/" element={<Home loading={loading} error={error} />} />
-          <Route path="/podcast/:id" element={<PodcastDetail />} />
+          <Route path="/podcast/:id" element={<ShowDetails />} />
         </Routes>
       </PodcastProvider>
     </>

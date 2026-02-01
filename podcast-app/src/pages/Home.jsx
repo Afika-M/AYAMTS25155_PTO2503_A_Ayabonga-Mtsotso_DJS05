@@ -3,7 +3,7 @@ import SortSelect from "../components/Filters/SortSelect";
 import GenreFilter from "../components/Filters/GenreFilter";
 import PodcastGrid from "../components/Podcasts/PodcastGrid";
 import Pagination from "../components/UI/Pagination";
-import styles from "../App.module.css";
+import styles from "./Home.module.css";
 import { genres } from "../data";
 
 /**
