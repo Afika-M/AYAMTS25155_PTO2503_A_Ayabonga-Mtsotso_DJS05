@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchPodcastById } from "../api/fetchData";
 import PodcastDetails from "../components/Podcasts/PodcastDetails";
+import Loading from "../components/UI/Loading";
+import Error from "../components/UI/Error";
 
 export default function ShowDetails() {
   const { id } = useParams();
@@ -15,9 +17,9 @@ export default function ShowDetails() {
     fetchPodcastById(id, setPodcast, setError, setLoading);
   }, [id]);
 
-  if (loading) return <p>Loading podcast...</p>;
-  if (error) return <p>Error loading podcast</p>;
-  if (!podcast) return <p>Podcast not found</p>;
+  if (loading) return <Loading />;
+  if (error) return <Error message="Error loading podcast" />;
+  if (!podcast) return <Error message="Podcast not found" />;
 
   return <PodcastDetails podcast={podcast} />;
 }

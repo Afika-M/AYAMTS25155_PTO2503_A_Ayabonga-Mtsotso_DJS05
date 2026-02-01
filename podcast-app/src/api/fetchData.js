@@ -12,7 +12,7 @@
  **/
 export async function fetchPodcasts(setPodcasts, setError, setLoading) {
   try {
-    const res = await fetch("https://podcast-api.netlify.app/shows");
+    const res = await fetch("https://podcast-api.netlify.app");
     if (!res.ok) throw new Error(`${res.status}`);
     const data = await res.json();
     setPodcasts(data);
@@ -40,12 +40,12 @@ export async function fetchPodcasts(setPodcasts, setError, setLoading) {
  **/
 export async function fetchPodcastById(id, setPodcast, setError, setLoading) {
   try {
-    const res = await fetch(`https://podcast-api.netlify.app/shows/${id}`);
+    const res = await fetch(`https://podcast-api.netlify.app/id/${id}`);
     if (!res.ok) throw new Error(`${res.status}`);
     const data = await res.json();
     setPodcast(data);
   } catch (err) {
-    console.error(`Failed to fetch podcast with id ${id}:`, err);
+    console.error("Failed to fetch podcast:", err);
     setError(err.message);
   } finally {
     setLoading(false);

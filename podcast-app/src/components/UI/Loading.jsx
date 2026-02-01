@@ -4,13 +4,12 @@ import styles from "./Loading.module.css";
 /**
  * Loading Component
  * Renders a loading spinner to indicate that content is being loaded.
- * @function Loading
+ *
  * @param {Object} props
- *
- *
- * @returns {JSX.Element} - A styled loading spinner component
+ * @param {string} props.message - Optional loading message
+ * @returns {JSX.Element}
  */
-export default function Loading(message) {
+export default function Loading({ message }) {
   return (
     <div className={styles.messageContainer}>
       <div className={styles.spinner}></div>

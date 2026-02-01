@@ -1,105 +1,210 @@
-# DJS05: Show Detail Page with Routing and Navigation
 
-## Project Overview
+# Podcast App
 
-In this project, you will build a podcast show detail page as part of a larger podcast browsing app. When users select a show from the homepage or listing page, they should be taken to a dedicated page that displays all details about that show. The app will support dynamic routing so each show has its own unique URL.
+A responsive React application for browsing and viewing podcasts. Users can search, filter, sort, and paginate podcast previews, and navigate to a dedicated show detail page for each podcast. The app demonstrates dynamic routing, state management, and asynchronous data fetching.
 
-You will implement data fetching based on the show ID in the URL, handle loading and error states gracefully, and ensure a smooth user experience by preserving search filters and pagination when users navigate back to the homepage. Additionally, you will build a season navigation system allowing users to expand or switch between seasons to browse episodes efficiently.
+#### 📝 Project Overview
 
-This project will demonstrate your ability to work with dynamic routes, manage state across pages, handle asynchronous data, and create a clean, maintainable React codebase.
+In this project, you will build a podcast show detail page as part of a larger browsing app. Selecting a podcast from the homepage navigates to a unique detail page that displays all available information about that show.
+
+#### Key features include:
+
+Dynamic routing for each show
+
+Data fetching by show ID
+
+Loading, error, and empty states handling
+
+Season navigation with episode lists
+
+State preservation (filters, search, pagination) when navigating back
+
+This project demonstrates your ability to handle asynchronous API calls, manage state across routes, and build a modular, maintainable React codebase.
+
+#### 🚀 Core Objectives
+
+Implement dynamic routing for unique show pages.
+
+Pass show ID via route parameters and fetch specific show data.
+
+Gracefully handle loading, error, and empty states.
+
+Display detailed show information: title, image, description, genres, last updated date.
+
+Preserve filters and search state when returning to the homepage.
+
+Create season navigation to expand/collapse seasons and browse episodes efficiently.
+
+Display episode info: number, title, image, shortened description.
+
+Maintain high code quality with JSDoc and consistent formatting.
+
+#### 🌍 API Endpoints
+URL	Description
+https://podcast-api.netlify.app	Returns an array of podcast previews
+https://podcast-api.netlify.app/genre/<ID>	Returns a genre object
+https://podcast-api.netlify.app/id/<ID>	Returns a show object with embedded seasons and episodes
+
+Genre Mapping (ID → Title)
+
+ID	Title
+1	Personal Growth
+2	Investigative Journalism
+3	History
+4	Comedy
+5	Entertainment
+6	Business
+7	Fiction
+8	News
+9	Kids and Family
+
+#### 🎯 Features
+Homepage / Listing Page
+
+Podcast previews with clickable cards navigating to detail pages.
+
+Search podcasts by title.
+
+Filter by genre using dropdown.
+
+Sort by newest, oldest, or alphabetical order.
+
+Pagination adapts to screen size.
+
+Dynamic card count based on device viewport.
+
+Show Detail Page
+
+Unique URL per show using dynamic routing (/podcast/:id).
+
+Fetch and display podcast data: title, description, large image, genres, last updated.
+
+Loading spinner and error messages.
+
+Season selector dropdown to switch between seasons.
+
+Episodes display number, title, season image, and shortened description.
+
+State Preservation
+
+Filters, search queries, and page number persist when returning to homepage.
+
+Responsive Design
+
+Smooth UI adjustments across mobile, tablet, and desktop screens.
+
+#### 🧱 Tech Stack
+
+React (functional components + hooks)
+
+Context API for global state management
+
+CSS Modules for modular styling
+
+JavaScript (ES6+)
+
+JSDoc for documentation
+
+#### 📁 Folder Structure
+src/
+├── api/
+│   └── fetchData.js          # Fetch all podcasts and single show by ID
+├── components/
+│   ├── Filters/
+│   │   ├── SearchBar.jsx
+│   │   ├── GenreFilter.jsx
+│   │   └── SortSelect.jsx
+│   ├── Podcasts/
+│   │   ├── PodcastCard.jsx
+│   │   ├── PodcastGrid.jsx
+│   │   └── PodcastDetails.jsx
+│   ├── UI/
+│   │   ├── Loading.jsx
+│   │   ├── Error.jsx
+│   │   └── Pagination.jsx
+│   └── Header.jsx
+├── context/
+│   └── PodcastContext.js    # Global state for filters, search, pagination
+├── utils/
+│   └── formatDate.js        # ISO date → human-readable format
+├── data.js                  # Static genre mapping
+├── App.jsx
+├── main.jsx
+├── index.css
+└── App.css
+
+#### 🧠 Global State (PodcastContext)
+
+search / setSearch – current search term
+
+genre / setGenre – selected genre filter
+
+sortKey / setSortKey – sorting method
+
+page / setPage, pageSize, totalPages – pagination info
+
+podcasts – filtered, sorted, paginated list
+
+allPodcastsCount – total podcasts after filters
+
+genres – static genre metadata
+
+#### 🛠️ Setup Instructions
+
+Clone the repository
+
+git clone https://github.com/Afika-M/AYAMTS25155_PTO2503_A_Ayabonga-Mtsotso_DJS03.git
 
 
-![alt text](<Show Page Podcast.png>)
+Navigate to project folder
+
+cd podcast-app
 
 
----
+Install dependencies
 
-## Core Objectives
+npm install
 
-- Implement **dynamic routing** for unique show detail pages.
-- Pass the correct show ID via route parameters and use it to **fetch specific show data**.
-- Gracefully handle **loading, error, and empty states** during data fetching.
-- Display comprehensive show details including title, image, description, genres, and last updated date.
-- Preserve previous **filters and search state** when navigating back to the homepage.
-- Create an intuitive **season navigation** UI to expand and switch between seasons without excessive scrolling.
-- Display episode information clearly with numbering, titles, images, and shortened descriptions.
-- Maintain **high code quality** with documentation (JSDoc) and consistent formatting.
 
----
+Start development server
 
-### API Endpoints
+npm run dev
 
-Data can be called via a `fetch` request to the following three endpoints. Note that there is not always a one-to-one mapping between endpoints and actual data structures. Also note that **\*`<ID>`** indicates where the dynamic ID for the requested item should be placed. For example: `[https://podcast-api.netlify.app/genre/3](https://podcast-api.netlify.app/genre/3)`\*
 
-| URL                                          |                                                                                        |
-| -------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `https://podcast-api.netlify.app`            | Returns an array of PREVIEW                                                            |
-| `https://podcast-api.netlify.app/genre/<ID>` | Returns a GENRE object                                                                 |
-| `https://podcast-api.netlify.app/id/<ID>`    | Returns a SHOW object with several SEASON and EPISODE objects directly embedded within |
+Open the app in your browser
 
-### Genre Titles
+http://localhost:5173
 
-Since genre information is only exposed on `PREVIEW` by means of the specific `GENRE` id, it is recommended that you include the mapping between genre id values and title in your code itself:
+#### 🖱️ How to Use the App
 
-| ID  | Title                    |
-| --- | ------------------------ |
-| 1   | Personal Growth          |
-| 2   | Investigative Journalism |
-| 3   | History                  |
-| 4   | Comedy                   |
-| 5   | Entertainment            |
-| 6   | Business                 |
-| 7   | Fiction                  |
-| 8   | News                     |
-| 9   | Kids and Family          |
+Search & Filter
 
-## Deliverables
+Type a keyword in the search bar to filter by title.
 
-1. **Homepage / Listing Page**
+Select a genre from the dropdown to filter shows.
 
-   - List of shows with clickable links or buttons that navigate to each show's detail page.
-   - Filters and search functionality that maintain state when navigating back from detail pages.
+Sort & Pagination
 
-2. **Dynamic Show Detail Page**
+Choose sort order (newest, oldest, alphabetical).
 
-   - A unique page for each show, accessible via a dynamic route.
-   - Fetch and display show details including:
-     - Title
-     - Large podcast image
-     - Description
-     - Genre tags
-     - Last updated date (formatted)
-   - Display loading indicator while fetching data.
-   - Display user-friendly error message if fetching fails.
-   - Handle empty states gracefully (e.g., show not found).
+Navigate through pages using pagination controls.
 
-3. **Season Navigation Component**
+View Show Details
 
-   - UI to expand/collapse seasons.
-   - Show season title and episode count.
-   - List episodes per season including:
-     - Episode number
-     - Episode title
-     - Season image
-     - Shortened episode description
+Click a podcast card to open its detail page.
 
-4. **State Preservation**
+Observe loading spinner during fetch.
 
-   - Maintain applied filters and search terms when navigating back to the homepage from a show detail page.
+Switch between seasons using the dropdown.
 
-5. **Code Quality**
+Browse episodes: number, title, season image, short description.
 
-   - Well-structured, modular React components.
-   - JSDoc comments for all major functions and modules.
-   - Consistent and readable formatting across all files.
+Return to Homepage
 
-6. **Responsive Design**
+Use browser back or app navigation. Previous filters and page state are preserved.
 
-   - The UI adapts smoothly across different device sizes (mobile, tablet, desktop).
+Error Handling
 
-7. **README Documentation**
-   - Brief project overview.
-   - Instructions for running the project locally.
-   - Description of main features and any known limitations.
+User-friendly messages display if fetch fails.
 
----
+“Podcast not found” appears for invalid IDs.
