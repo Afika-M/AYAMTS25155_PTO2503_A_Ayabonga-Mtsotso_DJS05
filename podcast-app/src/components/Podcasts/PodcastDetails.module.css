@@ -1,67 +1,100 @@
+
 .container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   max-width: 900px;
   margin: 2rem auto;
-  padding: 0 1rem;
-  font-family: Arial, sans-serif;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
-  text-align: center;
 }
 
 .podcastImage {
   width: 100%;
   max-height: 400px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 6px;
   margin-bottom: 1rem;
 }
 
 .description {
   font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.genres {
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.tag {
+  background: #eee;
+  padding: 0.3rem 0.6rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.updated {
+  font-size: 0.8rem;
+  color: var(--grey-text, #666);
   margin-bottom: 0.5rem;
 }
 
-.genres,
-.updated,
-.summary {
-  font-size: 0.9rem;
-  color: #555;
+.metaInfo {
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.seasonHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.seasonSelector {
-  margin: 1rem 0;
-}
-
-.seasonSelector select {
-  margin-left: 0.5rem;
+.seasonHeader select {
   padding: 0.3rem 0.5rem;
-  font-size: 0.95rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 0.9rem;
 }
 
 .episodes {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 .episode {
   display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.5rem;
+  background: #fafafa;
+  padding: 0.8rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .episodeImage {
-  width: 80px;
+  width: 120px;
   height: 80px;
   object-fit: cover;
-  border-radius: 5px;
-  flex-shrink: 0;
+  border-radius: 6px;
+  margin-right: 1rem;
 }
 
 .episodeInfo {
@@ -69,24 +102,20 @@
 }
 
 .episodeTitle {
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+  font-weight: 600;
+  margin: 0;
+  font-size: 0.95rem;
 }
 
 .episodeDesc {
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.3rem;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .episode {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .episodeImage {
-    width: 100%;
-    height: auto;
-  }
+.error {
+  color: red;
+  font-weight: 600;
+  text-align: center;
+  margin: 2rem 0;
 }

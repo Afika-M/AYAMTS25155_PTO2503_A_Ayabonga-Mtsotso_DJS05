@@ -1,5 +1,5 @@
 // src/components/Podcasts/PodcastDetails.jsx
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import styles from "./PodcastDetails.module.css";
 
@@ -31,7 +31,7 @@ export default function PodcastDetails({ podcast }) {
   }
 
   const genreLabels =
-    podcast.genres?.map((id) => genreMap[id] || `Unknown (${id})`) || [];
+    podcast.genres?.map((id) => genreMap[id] || `${id}`) || [];
 
   // Safely get seasons (some shows might not have any)
   const seasons = podcast.seasons || [];
